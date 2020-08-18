@@ -17,13 +17,5 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        userViewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
-
-        userViewModel.data.observe(this, Observer {
-            it.forEach { user ->
-                Log.d("SPLASH", user.email)
-            }
-        })
     }
 }
