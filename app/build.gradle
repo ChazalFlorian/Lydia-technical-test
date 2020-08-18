@@ -74,6 +74,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:$junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "com.squareup.retrofit2:retrofit-mock:$retrofit"
     testImplementation "androidx.arch.core:core-testing:$arch_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine"
 
 }

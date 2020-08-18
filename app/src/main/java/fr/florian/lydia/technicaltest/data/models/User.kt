@@ -1,5 +1,7 @@
 package fr.florian.lydia.technicaltest.data.models
 
+import androidx.annotation.Nullable
+
 data class User(
     val gender: String,
     val name: Name,
@@ -38,7 +40,7 @@ data class User(
 
     data class Id(
         val name: String,
-        val value: String
+        val value: String?
     )
 
     data class Picture(
