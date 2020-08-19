@@ -65,11 +65,11 @@ data class User(
             typeOfT: Type?,
             context: JsonDeserializationContext?
         ): User {
-            var user: User = Gson().fromJson(json, User::class.java)
-            var jsonObject: JsonObject? = json?.asJsonObject
+            val user: User = Gson().fromJson(json, User::class.java)
+            val jsonObject: JsonObject? = json?.asJsonObject
             jsonObject?.let { it ->
                 if (it.has("postcode")) {
-                    var elem: JsonElement = it.get("postcode")
+                    val elem: JsonElement = it.get("postcode")
                     user.location.postcode = elem.asJsonObject.asString
                 }
             }
