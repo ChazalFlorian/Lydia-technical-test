@@ -3,7 +3,6 @@ package fr.florian.lydia.technicaltest.injection.components
 import dagger.Component
 import fr.florian.lydia.technicaltest.data.repositories.UserRepository
 import fr.florian.lydia.technicaltest.injection.modules.NetworkModule
-import fr.florian.lydia.technicaltest.ui.viewmodels.SplashViewModel
 import javax.inject.Singleton
 
 @Singleton

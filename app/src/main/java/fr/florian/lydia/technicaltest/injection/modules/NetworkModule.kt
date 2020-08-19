@@ -3,7 +3,7 @@ package fr.florian.lydia.technicaltest.injection.modules
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
-import fr.florian.lydia.technicaltest.data.remote.routes.UserApi
+import fr.florian.lydia.technicaltest.data.remote.UserApi
 import fr.florian.lydia.technicaltest.util.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
