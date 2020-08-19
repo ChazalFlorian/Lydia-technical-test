@@ -1,8 +1,11 @@
 package fr.florian.lydia.technicaltest.injection.modules
 
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import fr.florian.lydia.technicaltest.data.models.Result
+import fr.florian.lydia.technicaltest.data.models.User
 import fr.florian.lydia.technicaltest.data.remote.UserApi
 import fr.florian.lydia.technicaltest.util.BASE_URL
 import retrofit2.Retrofit
@@ -32,9 +35,14 @@ object NetworkModule {
     @Reusable
     @JvmStatic
     internal fun provideRetrofitInterface(): Retrofit {
+
+        val gson = GsonBuilder()
+            .registerTypeAdapter(User::class.java, User.postCodeDeserializer())
+            .create()
+
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 }

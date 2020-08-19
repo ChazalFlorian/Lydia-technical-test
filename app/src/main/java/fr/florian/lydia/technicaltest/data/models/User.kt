@@ -1,7 +1,9 @@
 package fr.florian.lydia.technicaltest.data.models
 
 import android.os.Parcelable
+import com.google.gson.*
 import kotlinx.android.parcel.Parcelize
+import java.lang.reflect.Type
 
 @Parcelize
 data class User(
@@ -31,7 +33,7 @@ data class User(
         val street: String,
         val city: String,
         val state: String,
-        val postcode: Int
+        var postcode: String
     ) : Parcelable
 
     @Parcelize
@@ -57,5 +59,22 @@ data class User(
         val thumbnail: String
     ) : Parcelable
 
+    class postCodeDeserializer() : JsonDeserializer<User> {
+        override fun deserialize(
+            json: JsonElement?,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
+        ): User {
+            var user: User = Gson().fromJson(json, User::class.java)
+            var jsonObject: JsonObject? = json?.asJsonObject
+            jsonObject?.let { it ->
+                if (it.has("postcode")) {
+                    var elem: JsonElement = it.get("postcode")
+                    user.location.postcode = elem.asJsonObject.asString
+                }
+            }
+            return user
+        }
 
+    }
 }
