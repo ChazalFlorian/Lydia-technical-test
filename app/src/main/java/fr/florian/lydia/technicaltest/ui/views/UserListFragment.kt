@@ -10,12 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.florian.lydia.technicaltest.R
 import fr.florian.lydia.technicaltest.databinding.FragmentUserListBinding
 import fr.florian.lydia.technicaltest.ui.adapters.UserListAdapter
 import fr.florian.lydia.technicaltest.ui.viewmodels.UserListViewModel
+import kotlinx.android.synthetic.main.fragment_user_list.view.*
 
 class UserListFragment : Fragment() {
     private val userListViewModel: UserListViewModel by viewModels()
@@ -38,6 +38,19 @@ class UserListFragment : Fragment() {
         binding.userListViewModel = userListViewModel
         binding.lifecycleOwner = this
         binding.listUserRecycler.setHasFixedSize(true)
+        val swipeRefreshLayout = binding.root.list_user_refresher
+
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = true
+            adapter.resetUsers()
+            userListViewModel.retrieveBatch(true)
+            swipeRefreshLayout.isRefreshing = false
+        }
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+            android.R.color.holo_green_dark,
+            android.R.color.holo_orange_dark,
+            android.R.color.holo_blue_dark);
 
         linearLayoutManager = LinearLayoutManager(activity)
         linearLayoutManager.isAutoMeasureEnabled = false
@@ -50,24 +63,5 @@ class UserListFragment : Fragment() {
         })
 
         return binding.root
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserDetailFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
     }
 }

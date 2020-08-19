@@ -32,6 +32,10 @@ class UserListAdapter(private val users: ArrayList<UserViewModel>) :
         notifyDataSetChanged()
     }
 
+    fun resetUsers() {
+        users.clear()
+    }
+
     class UserHolder(val binding: ViewUserItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
