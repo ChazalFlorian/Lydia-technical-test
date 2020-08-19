@@ -1,14 +1,9 @@
 package fr.florian.lydia.technicaltest.ui.viewmodels
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import fr.florian.lydia.technicaltest.data.models.Result
 import fr.florian.lydia.technicaltest.data.models.User
 import fr.florian.lydia.technicaltest.data.repositories.UserRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserListViewModel : BaseViewModel() {
