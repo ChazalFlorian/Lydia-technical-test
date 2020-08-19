@@ -2,7 +2,7 @@ package fr.florian.lydia.technicaltest.data.repositories
 
 import fr.florian.lydia.technicaltest.data.models.Result
 import fr.florian.lydia.technicaltest.data.models.User
-import fr.florian.lydia.technicaltest.data.remote.routes.UserApi
+import fr.florian.lydia.technicaltest.data.remote.UserApi
 import javax.inject.Inject
 
 class UserRepository: BaseRepository() {
