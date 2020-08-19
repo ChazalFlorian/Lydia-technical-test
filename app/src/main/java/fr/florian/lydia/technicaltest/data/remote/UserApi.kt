@@ -1,4 +1,4 @@
-package fr.florian.lydia.technicaltest.data.remote.routes
+package fr.florian.lydia.technicaltest.data.remote
 
 import fr.florian.lydia.technicaltest.data.models.Result
 import fr.florian.lydia.technicaltest.data.models.User
@@ -13,5 +13,4 @@ interface UserApi {
         @Query("page") page: Int,
         @Query("seed") seed: String = "lydia"
     ): Result<User>
-
 }

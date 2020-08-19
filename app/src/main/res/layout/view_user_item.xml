@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="user"
+            type="fr.florian.lydia.technicaltest.ui.viewmodels.UserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorAccent"
+        android:onClick="@{user.openDetails}"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/email_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.email}"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/firstname_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{user.firstName}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_text"
+            app:layout_constraintWidth_percent="0.5"
+            android:textAlignment="viewStart"
+            android:layout_gravity="start" />
+
+        <TextView
+            android:id="@+id/lastname_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{user.lastName}"
+            android:textColor="@color/black"
+            android:textAlignment="viewEnd"
+            android:layout_gravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_text"
+            app:layout_constraintWidth_percent="0.5" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
