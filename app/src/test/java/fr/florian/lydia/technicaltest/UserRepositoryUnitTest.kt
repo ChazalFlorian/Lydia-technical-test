@@ -3,7 +3,7 @@ package fr.florian.lydia.technicaltest
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import fr.florian.lydia.technicaltest.data.models.Result
 import fr.florian.lydia.technicaltest.data.models.User
-import fr.florian.lydia.technicaltest.data.remote.routes.UserApi
+import fr.florian.lydia.technicaltest.data.remote.UserApi
 import fr.florian.lydia.technicaltest.data.repositories.UserRepository
 import io.mockk.coEvery
 import io.mockk.mockkClass
@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
