@@ -1,6 +1,7 @@
 package fr.florian.lydia.technicaltest.injection.components
 
 import android.app.Application
+import android.net.ConnectivityManager
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

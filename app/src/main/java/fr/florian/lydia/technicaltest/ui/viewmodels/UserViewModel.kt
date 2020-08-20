@@ -1,6 +1,5 @@
 package fr.florian.lydia.technicaltest.ui.viewmodels
 
-import android.util.Log
 import android.view.View
 import androidx.navigation.findNavController
 import fr.florian.lydia.technicaltest.data.models.User

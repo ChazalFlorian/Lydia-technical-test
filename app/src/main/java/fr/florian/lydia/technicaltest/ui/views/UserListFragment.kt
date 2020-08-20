@@ -1,6 +1,13 @@
 package fr.florian.lydia.technicaltest.ui.views
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +28,8 @@ class UserListFragment : Fragment(), BottomListListener {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: UserListAdapter
+
+    private var hasInternetConnection: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +66,7 @@ class UserListFragment : Fragment(), BottomListListener {
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = true
             adapter.resetUsers()
-            userListViewModel.retrieveBatch(true)
+            userListViewModel.retrieveBatch(hasInternetConnection, true)
             swipeRefreshLayout.isRefreshing = false
         }
 
@@ -65,6 +74,42 @@ class UserListFragment : Fragment(), BottomListListener {
     }
 
     override fun hasHitBottomList() {
-        userListViewModel.retrieveBatch()
+        userListViewModel.retrieveBatch(hasInternetConnection)
+    }
+
+    private val networkChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            intent?.let {
+                if (it.extras != null) {
+                    val ni =
+                        it.extras!![ConnectivityManager.EXTRA_NETWORK_INFO] as NetworkInfo?
+                    if (ni != null && ni.state == NetworkInfo.State.CONNECTED) {
+                        hasInternetConnection = true
+                        Log.d("test", "Network " + ni.typeName + " connected")
+                    }
+                }
+                if (it.extras != null && it.extras!!.getBoolean(
+                        ConnectivityManager.EXTRA_NO_CONNECTIVITY,
+                        false
+                    )
+                ) {
+                    hasInternetConnection = false
+                    Log.d("test", "There's no network connectivity")
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        userListViewModel.retrieveBatch(hasInternetConnection)
+        val intentFilter = IntentFilter()
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+        requireActivity().registerReceiver(networkChangeReceiver, intentFilter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireActivity().unregisterReceiver(networkChangeReceiver)
     }
 }

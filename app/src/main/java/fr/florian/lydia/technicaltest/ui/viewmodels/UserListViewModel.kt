@@ -15,17 +15,13 @@ class UserListViewModel : BaseViewModel() {
     private var page: Int = 1
     private var request: Int = 10
 
-    init {
-        retrieveBatch()
-    }
-
-    fun retrieveBatch(reset: Boolean = false) {
+    fun retrieveBatch(hasInternetConnection: Boolean, reset: Boolean = false) {
         if (reset) {
             page = 1
             request = 10
         }
         viewModelScope.launch(Dispatchers.IO) {
-            val retrievedData = userRepository.loadUsersBatch(page, request)
+            val retrievedData = userRepository.loadUsersBatch(page, request, hasInternetConnection)
             page += 1
             request += 10
             users.postValue(retrievedData)

@@ -1,6 +1,5 @@
 package fr.florian.lydia.technicaltest.data.repositories
 
-import android.util.Log
 import fr.florian.lydia.technicaltest.data.local.daos.UserDao
 import fr.florian.lydia.technicaltest.data.models.Result
 import fr.florian.lydia.technicaltest.data.models.User
@@ -15,8 +14,8 @@ class UserRepository : BaseRepository() {
     @Inject
     lateinit var userDao: UserDao
 
-    suspend fun loadUsersBatch(page: Int = 1, results: Int = 10): List<User> {
-        if (false) {
+    suspend fun loadUsersBatch(page: Int = 1, results: Int = 10, hasInternetConnection: Boolean): List<User> {
+        if (hasInternetConnection) {
             val res: List<User> = retrieveRemoteUsersBatch(page, results).results
             saveLocalUsersBatch(res)
             return res

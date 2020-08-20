@@ -1,11 +1,8 @@
 package fr.florian.lydia.technicaltest
 
-import android.app.Activity
-import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.DispatchingAndroidInjector
-import fr.florian.lydia.technicaltest.data.local.database.LydiaDatabase
 import fr.florian.lydia.technicaltest.data.repositories.BaseRepository
 import fr.florian.lydia.technicaltest.injection.components.DaggerViewModelInjector
 import fr.florian.lydia.technicaltest.injection.components.ViewModelInjector
@@ -23,7 +20,6 @@ class LydiaApplication : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
