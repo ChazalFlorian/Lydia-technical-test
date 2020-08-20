@@ -1,5 +1,6 @@
 package fr.florian.lydia.technicaltest.data.repositories
 
+import android.util.Log
 import fr.florian.lydia.technicaltest.data.local.daos.UserDao
 import fr.florian.lydia.technicaltest.data.models.Result
 import fr.florian.lydia.technicaltest.data.models.User

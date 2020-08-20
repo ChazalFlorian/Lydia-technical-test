@@ -3,218 +3,391 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View" />
         <variable
             name="user"
             type="fr.florian.lydia.technicaltest.ui.viewmodels.UserViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.views.UserDetailFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/name_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.fullName}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.5" />
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.views.UserDetailFragment">
 
-        <ImageView
-            android:id="@+id/thumbnail_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:contentDescription="TODO"
-            android:text="@string/hello_blank_fragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/name_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.fullName}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/location_1_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.locationFirstPart}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <ImageView
+                android:id="@+id/thumbnail_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="TODO"
+                app:imageUrl="@{user.thumbnailImage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/location_2_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.locationLastPart}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/location_1_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.locationFirstPart}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/email_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.email}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/location_1_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/location_2_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.locationLastPart}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location_1_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/nat_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.nationality}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/location_2_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.email}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location_2_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <!--login-->
-        <TextView
-            android:id="@+id/login_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.login}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/email_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/nat_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.nationality}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/password_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.password}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nat_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <View
+                android:id="@+id/separator_login"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thumbnail_image" />
 
-        <TextView
-            android:id="@+id/salt_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.salt}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/separator_login_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/login_infos_title"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="26dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_login" />
+            <!--login-->
+            <TextView
+                android:id="@+id/login_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.login}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_login_title"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/md5_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.MD5}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <EditText
+                android:id="@+id/password_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:editable="false"
+                android:inputType="textPassword"
+                android:text="@{user.password}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/login_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/sha1_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.SHA1}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/salt_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/show_password_cta"
+                android:layout_width="35dp"
+                android:layout_height="36dp"
+                android:background="@color/colorAccent"
+                android:fontFamily="@font/font_awesome_5_free"
+                android:text="@string/icon_open_eyes"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toRightOf="@id/password_text"
+                app:layout_constraintTop_toBottomOf="@id/login_text" />
 
-        <TextView
-            android:id="@+id/sha256_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.SHA256}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/md5_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/salt_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.salt}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/password_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/registered_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.registered}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sha1_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/md5_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.MD5}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/salt_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/dob_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.DOB}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sha256_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/sha1_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.SHA1}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/md5_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/phone_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.phone}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/registered_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/sha256_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.SHA256}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sha1_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/cell_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.cell}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dob_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <View
+                android:id="@+id/separator_misc"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sha256_text" />
 
-        <!--id-->
+            <TextView
+                android:id="@+id/separator_misc_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/misc_infos_title"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="26dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_misc" />
 
-        <TextView
-            android:id="@+id/name_id_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.idName}"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/phone_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/registered_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.registered}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_misc_title"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:id="@+id/value_id_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{user.idValue}"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cell_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/dob_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.DOB}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/registered_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <!--pictures-->
+            <TextView
+                android:id="@+id/phone_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.phone}"
 
-        <ImageView
-            android:id="@+id/large_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_id_text"
-            app:layout_constraintWidth_percent="0.5" />
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dob_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-        <ImageView
-            android:id="@+id/medium_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/value_id_text"
-            app:layout_constraintWidth_percent="0.5" />
+            <TextView
+                android:id="@+id/cell_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.cell}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_text"
+                app:layout_constraintWidth_percent="0.5" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--id-->
+
+            <View
+                android:id="@+id/separator_id"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cell_text" />
+
+            <TextView
+                android:id="@+id/separator_id_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/id_infos_title"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="26dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_id" />
+
+            <TextView
+                android:id="@+id/name_id_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.idName}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_id_title"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/value_id_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{user.idValue}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_id_text"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <!--pictures-->
+
+            <View
+                android:id="@+id/separator_image"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/value_id_text" />
+
+            <TextView
+                android:id="@+id/separator_image_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/pictures_title"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="26dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_image" />
+
+            <ImageView
+                android:id="@+id/large_image"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:imageUrl="@{user.largeImage}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_image_title"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <ImageView
+                android:id="@+id/medium_image"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:imageUrl="@{user.mediumImage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator_image_title"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </layout>

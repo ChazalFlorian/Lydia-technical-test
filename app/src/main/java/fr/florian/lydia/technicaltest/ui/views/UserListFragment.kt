@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import fr.florian.lydia.technicaltest.R
 import fr.florian.lydia.technicaltest.databinding.FragmentUserListBinding
 import fr.florian.lydia.technicaltest.ui.adapters.UserListAdapter
@@ -30,6 +31,11 @@ class UserListFragment : Fragment(), BottomListListener {
     private lateinit var adapter: UserListAdapter
 
     private var hasInternetConnection: Boolean = false
+    private var hasLostInternetOnce: Boolean = false
+    private var isFirstLaunch: Boolean = true
+
+    private lateinit var displayNoInternetConnection: () -> Unit
+    private lateinit var displayFoundAgainInternetConnection: () -> Unit
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,16 +64,28 @@ class UserListFragment : Fragment(), BottomListListener {
         })
 
         val swipeRefreshLayout = binding.root.list_user_refresher
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+        swipeRefreshLayout.setColorSchemeResources(
+            R.color.colorPrimary,
             android.R.color.holo_green_dark,
             android.R.color.holo_orange_dark,
-            android.R.color.holo_blue_dark)
+            android.R.color.holo_blue_dark
+        )
 
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = true
             adapter.resetUsers()
             userListViewModel.retrieveBatch(hasInternetConnection, true)
             swipeRefreshLayout.isRefreshing = false
+        }
+
+        displayNoInternetConnection = {
+            Snackbar.make(binding.root, "No Internet", Snackbar.LENGTH_SHORT)
+                .show()
+        }
+
+        displayFoundAgainInternetConnection = {
+            Snackbar.make(binding.root, "found again Internet", Snackbar.LENGTH_SHORT)
+                .show()
         }
 
         return binding.root
@@ -77,24 +95,39 @@ class UserListFragment : Fragment(), BottomListListener {
         userListViewModel.retrieveBatch(hasInternetConnection)
     }
 
+    /**
+     *
+     */
     private val networkChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             intent?.let {
-                if (it.extras != null) {
+                it.extras?.let { bundle ->
                     val ni =
-                        it.extras!![ConnectivityManager.EXTRA_NETWORK_INFO] as NetworkInfo?
+                        bundle[ConnectivityManager.EXTRA_NETWORK_INFO] as NetworkInfo?
+
                     if (ni != null && ni.state == NetworkInfo.State.CONNECTED) {
+
                         hasInternetConnection = true
-                        Log.d("test", "Network " + ni.typeName + " connected")
+                        if (hasLostInternetOnce) {
+                            displayFoundAgainInternetConnection()
+                            hasLostInternetOnce = false
+                        }
                     }
-                }
-                if (it.extras != null && it.extras!!.getBoolean(
-                        ConnectivityManager.EXTRA_NO_CONNECTIVITY,
-                        false
-                    )
-                ) {
-                    hasInternetConnection = false
-                    Log.d("test", "There's no network connectivity")
+
+                    if (bundle.getBoolean(
+                            ConnectivityManager.EXTRA_NO_CONNECTIVITY,
+                            false
+                        )
+                    ) {
+                        hasInternetConnection = false
+                        displayNoInternetConnection()
+                        hasLostInternetOnce = true
+                    }
+
+                    if (isFirstLaunch) {
+                        userListViewModel.retrieveBatch(hasInternetConnection)
+                        isFirstLaunch = !isFirstLaunch
+                    }
                 }
             }
         }
@@ -102,7 +135,6 @@ class UserListFragment : Fragment(), BottomListListener {
 
     override fun onResume() {
         super.onResume()
-        userListViewModel.retrieveBatch(hasInternetConnection)
         val intentFilter = IntentFilter()
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
         requireActivity().registerReceiver(networkChangeReceiver, intentFilter)
