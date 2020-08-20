@@ -4,7 +4,6 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
-import fr.florian.lydia.technicaltest.data.models.Result
 import fr.florian.lydia.technicaltest.data.models.User
 import fr.florian.lydia.technicaltest.data.remote.UserApi
 import fr.florian.lydia.technicaltest.util.BASE_URL

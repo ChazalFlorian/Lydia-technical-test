@@ -1,6 +1,5 @@
 package fr.florian.lydia.technicaltest.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,7 +35,6 @@ class UserListAdapter(private val users: ArrayList<UserViewModel>, private val l
 
     fun addBatch(usersToAdd: List<User>) {
         usersToAdd.forEach {
-            Log.d("test", it.email)
             val userViewModel = UserViewModel(it)
             users.add(userViewModel)
         }

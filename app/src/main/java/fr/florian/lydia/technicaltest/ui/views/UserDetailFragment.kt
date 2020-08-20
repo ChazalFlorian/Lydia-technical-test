@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import fr.florian.lydia.technicaltest.R
-import fr.florian.lydia.technicaltest.data.models.User
 import fr.florian.lydia.technicaltest.databinding.FragmentUserDetailBinding
 import fr.florian.lydia.technicaltest.ui.viewmodels.UserViewModel
 

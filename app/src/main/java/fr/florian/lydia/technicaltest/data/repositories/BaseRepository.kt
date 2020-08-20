@@ -1,15 +1,12 @@
 package fr.florian.lydia.technicaltest.data.repositories
 
-import fr.florian.lydia.technicaltest.injection.components.DaggerViewModelInjector
+import fr.florian.lydia.technicaltest.LydiaApplication
 import fr.florian.lydia.technicaltest.injection.components.ViewModelInjector
-import fr.florian.lydia.technicaltest.injection.modules.NetworkModule
 
 
 abstract class BaseRepository {
-    private val injector: ViewModelInjector = DaggerViewModelInjector
-        .builder()
-        .networkModule(NetworkModule)
-        .build()
+
+    private val injector: ViewModelInjector = LydiaApplication.instance.injector
 
     init {
         inject()

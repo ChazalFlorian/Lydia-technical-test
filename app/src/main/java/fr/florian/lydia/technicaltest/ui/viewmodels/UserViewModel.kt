@@ -1,8 +1,6 @@
 package fr.florian.lydia.technicaltest.ui.viewmodels
 
-import android.util.Log
 import android.view.View
-import androidx.databinding.Bindable
 import androidx.navigation.findNavController
 import fr.florian.lydia.technicaltest.data.models.User
 import fr.florian.lydia.technicaltest.ui.views.UserListFragmentDirections
@@ -10,7 +8,6 @@ import fr.florian.lydia.technicaltest.ui.views.UserListFragmentDirections
 class UserViewModel(private val user: User) : BaseViewModel() {
 
     fun getLastName(): String {
-        Log.d("test", user.name.last)
         return user.name.last
     }
 

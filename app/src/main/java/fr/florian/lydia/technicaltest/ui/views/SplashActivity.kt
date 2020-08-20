@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import fr.florian.lydia.technicaltest.R
-import fr.florian.lydia.technicaltest.ui.viewmodels.UserListViewModel
 
 class SplashActivity : AppCompatActivity() {
 

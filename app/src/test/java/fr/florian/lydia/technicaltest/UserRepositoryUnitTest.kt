@@ -53,7 +53,7 @@ class UserRepositoryUnitTest {
         } returns createExpectedRemoteData()
 
         // When
-        val result = UserRepository().loadUsersBatch().results.take(2).toList()
+        val result = UserRepository().loadUsersBatch().take(2).toList()
 
         // Then
         assertEquals(createExpectedResultFirst().results[0], result[0])
