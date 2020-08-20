@@ -9,7 +9,6 @@ import fr.florian.lydia.technicaltest.ui.views.UserListFragmentDirections
 class UserViewModel(private val user: User) : BaseViewModel() {
 
     fun getLastName(): String {
-        Log.d("test", user.name.last)
         return user.name.last
     }
 

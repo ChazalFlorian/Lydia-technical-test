@@ -36,7 +36,6 @@ class UserListAdapter(private val users: ArrayList<UserViewModel>, private val l
 
     fun addBatch(usersToAdd: List<User>) {
         usersToAdd.forEach {
-            Log.d("test", it.email)
             val userViewModel = UserViewModel(it)
             users.add(userViewModel)
         }

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import fr.florian.lydia.technicaltest.data.models.User
 import fr.florian.lydia.technicaltest.data.repositories.UserRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserListViewModel : BaseViewModel() {
@@ -23,11 +24,11 @@ class UserListViewModel : BaseViewModel() {
             page = 1
             request = 10
         }
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val retrievedData = userRepository.loadUsersBatch(page, request)
             page += 1
             request += 10
-            users.postValue(retrievedData.results)
+            users.postValue(retrievedData)
         }
     }
 }
