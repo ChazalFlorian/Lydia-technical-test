@@ -1,11 +1,13 @@
 package fr.florian.lydia.technicaltest.data.models
 
 import android.os.Parcelable
+import androidx.room.Entity
 import com.google.gson.*
 import kotlinx.android.parcel.Parcelize
 import java.lang.reflect.Type
 
 @Parcelize
+@Entity(primaryKeys = ["email"])
 data class User(
     val gender: String,
     val name: Name,
@@ -22,6 +24,7 @@ data class User(
 ) : Parcelable {
 
     @Parcelize
+    @Entity
     data class Name(
         val title: String,
         val first: String,
@@ -29,6 +32,7 @@ data class User(
     ) : Parcelable
 
     @Parcelize
+    @Entity
     data class Location(
         val street: String,
         val city: String,
@@ -37,6 +41,7 @@ data class User(
     ) : Parcelable
 
     @Parcelize
+    @Entity
     data class Login(
         val username: String,
         val password: String,
@@ -47,12 +52,14 @@ data class User(
     ) : Parcelable
 
     @Parcelize
+    @Entity
     data class Id(
         val name: String,
         val value: String?
     ) : Parcelable
 
     @Parcelize
+    @Entity
     data class Picture(
         val large: String,
         val medium: String,
