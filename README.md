@@ -52,3 +52,14 @@ Here is how we plan to do it:
 5. ensure everything is unit tested, test using TestCanary; add Scenarios & instrumented tests using Espresso.: 4h
 
 6. Prepare and test for fake prod release: 2h
+
+
+## Results
+
+
+1. Took ~4h
+2. Took 4h: Dagger took me more time than I expected
+3. Took 6h: Again Dagger, I lost time trying to pass an application instance to my DatabaseModule.
+4. Took ~2h
+5. did not had enough time left
+6. did not had enough time left
